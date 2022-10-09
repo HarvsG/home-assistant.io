@@ -3,14 +3,13 @@ title: HTTP
 description: Offers a web framework to serve files.
 ha_category:
   - Other
-  - Binary Sensor
-  - Sensor
 ha_release: pre 0.7
 ha_iot_class: Local Push
 ha_quality_scale: internal
 ha_codeowners:
   - '@home-assistant/core'
 ha_domain: http
+ha_integration_type: system
 ---
 
 The `http` integration serves all files and data required for the Home Assistant frontend. You only need to add this to your configuration file if you want to change any of the default settings.
@@ -105,13 +104,16 @@ http:
 
 The [Set up encryption using Let's Encrypt](/blog/2015/12/13/setup-encryption-using-lets-encrypt/) blog post gives you details about the encryption of your traffic using free certificates from [Let's Encrypt](https://letsencrypt.org/).
 
+## Reverse proxies
+
 When using a reverse proxy, you will need to enable the `use_x_forwarded_for` and `trusted_proxies` options. Requests from reverse proxies will be blocked if these options are not set.
   
 ```yaml
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.30.33.0/24  # Add the IP address of the proxy server
+    - 10.0.0.200      # Add the IP address of the proxy server
+    - 172.30.33.0/24  # You may also provide the subnet mask
 ```
 
 ## APIs
@@ -151,7 +153,7 @@ If you want to use Home Assistant to host or serve static files then create a di
 
 <div class='note warning'>
 
-  Files served from the `www` folder (`/local/` url), aren't protected by the Home Assistant authentication. Files stored in this folder, if the URL is known, can be accessed by anybody without authentication.
+  Files served from the `www` folder (`/local/` URL), aren't protected by the Home Assistant authentication. Files stored in this folder, if the URL is known, can be accessed by anybody without authentication.
 
 </div>
 

@@ -8,7 +8,10 @@ title: Home Assistant
 subtitle: Open source home automation that puts local control and privacy first.
 author: Home Assistant
 simple_search: https://www.google.com/search
-description: Open source home automation that puts local control and privacy first.
+description: >-
+  Open source home automation that puts local control and privacy first.
+  Powered by a worldwide community of tinkerers and DIY enthusiasts.
+  Perfect to run on a Raspberry Pi or a local server.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -45,7 +48,6 @@ commonmark:
 highlighter: none
 
 plugins:
-  - jekyll-time-to-read
   - jekyll-toc
 
 paginate: 10 # Posts per page on the blog index
@@ -73,7 +75,7 @@ collections:
     output: true
   faq:
     output: true
-  lovelace:
+  dashboards:
     output: true
 
 # ----------------------- #
@@ -89,7 +91,7 @@ twitter_user: balloob
 twitter_tweet_button: true
 
 # Google Analytics
-google_analytics_tracking_id: UA-57927901-1
+# google_analytics_tracking_id: UA-57927901-1
 
 # Facebook Like
 facebook_like: true
@@ -103,10 +105,10 @@ social:
     account: home_assistant
 
 # Home Assistant release details
-current_major_version: 2021
-current_minor_version: 7
-current_patch_version: 3
-date_released: 2021-07-16
+current_major_version: 2022
+current_minor_version: 10
+current_patch_version: 1
+date_released: 2022-10-06
 
 # Either # or the anchor link to latest release notes in the blog post.
 # Must be prefixed with a # and have double quotes around it.
@@ -175,12 +177,9 @@ toc:
 
 # Configuration for installation pages
 installation:
-  container:
-    base: "ghcr.io/home-assistant/home-assistant"
-    raspberrypi3: "ghcr.io/home-assistant/raspberrypi3-homeassistant"
-    raspberrypi4: "ghcr.io/home-assistant/raspberrypi4-homeassistant"
+  container: "ghcr.io/home-assistant/home-assistant"
   versions:
-    python: "3.8"
+    python: "3.9"
   types:
     odroid:
       board: ODROID

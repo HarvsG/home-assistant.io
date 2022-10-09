@@ -8,9 +8,11 @@ ha_iot_class: Cloud Push
 ha_release: 0.77
 ha_codeowners:
   - '@OverloadUT'
+  - '@mib1185'
 ha_domain: ecovacs
 ha_platforms:
   - vacuum
+ha_integration_type: integration
 ---
 
 The `ecovacs` integration is the main integration to integrate all [Ecovacs](https://www.ecovacs.com) (Deebot) vacuums. You will need your Ecovacs account information (username, password) to discover and control vacuums in your account.
@@ -70,7 +72,7 @@ logger:
     sucks: debug
 ```
 
-Warning: doing this will cause your authentication token to visible in your log files. Be sure to remove any tokens and other authentication details from your log before posting them in an issue.
+**Warning**: doing this will cause your authentication token to be visible in your log files. Be sure to remove any tokens and other authentication details from your log before posting them in an issue.
 
 
 ## Vacuum
@@ -87,13 +89,11 @@ Here's an example of how to extract the filter's lifespan to its own sensor usin
 
 ```yaml
 # Example configuration.yaml entry
-sensor:
-  - platform: template
-    sensors:
-      vacuum_filter:
-        friendly_name: "Vacuum Filter Remaining Lifespan"
-        unit_of_measurement: "%"
-        value_template: "{{ state_attr('vacuum.my_vacuum_id', 'component_filter') }}"
+template:
+  - sensor:
+    - name: "Vacuum Filter Remaining Lifespan"
+      unit_of_measurement: "%"
+      state: "{{ state_attr('vacuum.my_vacuum_id', 'component_filter') }}"
 ```
 
 {% endraw %}
@@ -104,13 +104,11 @@ Or, if you want a simple binary sensor that becomes `On` when the filter needs t
 
 ```yaml
 # Example configuration.yaml entry
-binary_sensor:
-  - platform: template
-    sensors:
-      vacuum_filter_replace:
-        friendly_name: "Vacuum Filter"
-        device_class: problem
-        value_template: "{{ state_attr('vacuum.my_vacuum_id', 'component_filter') <= 5 }}"
+template:
+  - binary_sensor:
+    - name: "Vacuum Filter"
+      device_class: problem
+      state: "{{ state_attr('vacuum.my_vacuum_id', 'component_filter') <= 5 }}"
 ```
 
 {% endraw %}
