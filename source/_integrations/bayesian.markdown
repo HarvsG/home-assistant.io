@@ -109,11 +109,11 @@ observations:
       type: template
     prob_given_true:
       description: >
-        Assuming the bayesian binary_sensor is `True`, the probability the entity state is occurring.
+        Assuming the bayesian binary_sensor is `on`, the probability the entity state is occurring.
       required: true
       type: float
     prob_given_false:
-      description: Assuming the bayesian binary_sensor is `False` the probability the entity state is occurring.
+      description: Assuming the bayesian binary_sensor is `off` the probability the entity state is occurring.
       required: true
       type: float
 {% endconfiguration %}
