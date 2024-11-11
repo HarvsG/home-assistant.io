@@ -35,8 +35,10 @@ When configuring a Bayesian binary sensor, you should define the probability of 
 
 ## Configuration
 
-To enable the Bayesian sensor, add the following lines to your {% term "`configuration.yaml`" %} file.
-{% include integrations/restart_ha_after_config_inclusion.md %}
+{% include integrations/config_flow.md %}
+
+To configure a YAML Bayesian sensor, add an entry using the following structure to your {% term "`configuration.yaml`" %} file.
+ {% include integrations/restart_ha_after_config_inclusion.md %}
 
 ```yaml
 # Example configuration.yaml entry
@@ -56,15 +58,15 @@ binary_sensor:
 {% configuration %}
 prior:
   description: >
-    The prior probability of the event (0 to 1). At any point in time
-    (ignoring all external influences) how likely is this event to be occurring?
+     The baseline probability of the event (0 to 1). At any point in time
+     (ignoring all external influences) how likely is this event to be occurring?
   required: true
   type: float
 probability_threshold:
   description: >
     The posterior probability at which the sensor should trigger to `on`.
     use higher values to reduce false positives (and increase false negatives)
-    Note: If the threshold is higher than the prior then the default state will be `off`
+    Note: If the threshold is higher than the `prior` then the default state will be `off`
   required: false
   type: float
   default: 0.5
@@ -102,16 +104,16 @@ observations:
       required: false
       type: string
     value_template:
-      description: Defines the template to be used, should evaluate to `true` or `false`. Required for `template`.
+      description: Defines the template to be used, should evaluate to `True` or `False`. Required for `template`.
       required: false
       type: template
     prob_given_true:
       description: >
-        Assuming the bayesian binary_sensor is `true`, the probability the entity state is occurring.
+        Assuming the bayesian binary_sensor is `True`, the probability the entity state is occurring.
       required: true
       type: float
     prob_given_false:
-      description: Assuming the bayesian binary_sensor is `false` the probability the entity state is occurring.
+      description: Assuming the bayesian binary_sensor is `False` the probability the entity state is occurring.
       required: true
       type: float
 {% endconfiguration %}
@@ -122,8 +124,8 @@ observations:
 2. When using `0.99` and `0.001`. The number of `9`s and `0`s matters.
 3. Most probabilities will be time-based - the fraction of time something is true is also the probability it will be true.
 4. Use your Home Assistant history to help estimate the probabilities.
-   - `prob_given_true:` - Select the sensor in question over a time range when you think the `bayesian` sensor should have been `true`. `prob_given_true:` is the fraction of the time the sensor was in `to_state:`.
-   - `prob_given_false:` - Select the sensor in question over a time range when you think the `bayesian` sensor should have been `false`. `prob_given_false:` is the fraction of the time the sensor was in `to_state:`.
+   - `prob_given_true:` - Select the sensor in question over a time range when you think the `bayesian` sensor should have been `True`. `prob_given_true:` is the fraction of the time the sensor was in `to_state:`.
+   - `prob_given_false:` - Select the sensor in question over a time range when you think the `bayesian` sensor should have been `False`. `prob_given_false:` is the fraction of the time the sensor was in `to_state:`.
 5. Don't work backwards by tweaking `prob_given_true:` and `prob_given_false:` to give the results and behaviors you want, use #4 to try and get probabilities as close to the 'truth' as you can, if your behavior is not as expected consider adding more sensors or see #6.
 6. If your Bayesian sensor ends up triggering `on` too easily, re-check that the probabilities set and estimated make sense, then consider increasing `probability_threshold:` and vice-versa.
 
