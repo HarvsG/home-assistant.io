@@ -35,8 +35,6 @@ Now consider the above but in a home that has cats. The probability that the roo
 
 When configuring these conditional probabilities define the probability of the sensor observation (e.g motion detected) *given* the thing you are trying to estimate (e.g human-occupancy of the room).
 
-## Configuration
-
 {% include integrations/config_flow.md %}
 
 To configure a YAML Bayesian sensor, add an entry using the following structure to your {% term "`configuration.yaml`" %} file.
