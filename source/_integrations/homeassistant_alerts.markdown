@@ -7,7 +7,7 @@ ha_category:
 ha_codeowners:
   - '@home-assistant/core'
 ha_domain: homeassistant_alerts
-ha_integration_type: integration
+ha_integration_type: system
 ha_quality_scale: internal
 ---
 
@@ -22,7 +22,7 @@ dashboard if an alert is found that impacts your system.
 ## Configuration
 
 This integration is by default enabled unless you've disabled or removed the
-[`default_config:`](/integrations/default_config/) line from your configuration.
+[`default_config:`](/integrations/default_config/) line from your {% term "`configuration.yaml`" %} file.
 If that is the case, the following example shows you how to enable this
 integration manually:
 
